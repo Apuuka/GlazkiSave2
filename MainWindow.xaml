@@ -5,16 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GlazkiSave"
         mc:Ignorable="d"
-        Title="BikbulatovSave" Height="450" Width="800" FontFamily="Century Gothic" Icon="D:\3 курс\ИСП-3122\GlazkiSave2\GlazkiSave\res\Глазки-save.ico">
+        Title="BikbulatovSave" Height="450" Width="800" FontFamily="Century Gothic" Icon="D:\3 курс\ИСП-3122\123\2\Глазки-save\Общие ресурсы\Глазки-save.ico">
     <Grid>
-        <!--путь поменяй-->
         <Grid.RowDefinitions>
             <RowDefinition Height="75"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <!--путь поменяй-->
-        <Image Source="D:\3 курс\ИСП-3122\GlazkiSave2\GlazkiSave\res\Глазки-save.png" HorizontalAlignment="Left"></Image>
+        <Image Source="D:\3 курс\ИСП-3122\123\2\Глазки-save\Общие ресурсы\Глазки-save.png" HorizontalAlignment="Left"></Image>
         <TextBlock Text="Список Агентов" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
         <Frame Grid.Row="1" Name="MainFrame" ContentRendered="MainFrame_ContentRendered" NavigationUIVisibility="Hidden"></Frame>
         <Button Content="Назад" Name="BtnBack" HorizontalAlignment="Right"
