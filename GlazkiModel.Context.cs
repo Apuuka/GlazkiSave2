@@ -15,6 +15,7 @@ namespace GlazkiSave
     
     public partial class BikbulatovGlazkiSave2Entities : DbContext
     {
+        
         private static BikbulatovGlazkiSave2Entities _context;
         public static BikbulatovGlazkiSave2Entities GetContext()
         {
@@ -45,5 +46,6 @@ namespace GlazkiSave
         public virtual DbSet<ProductType> ProductType { get; set; }
         public virtual DbSet<Shop> Shop { get; set; }
         public virtual DbSet<Supplier> Supplier { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

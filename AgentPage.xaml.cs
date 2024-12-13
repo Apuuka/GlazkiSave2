@@ -141,6 +141,16 @@ namespace GlazkiSave
             UpdateAgents();
         }
 
+        private void Grid_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                BikbulatovGlazkiSave2Entities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                AgentListView.ItemsSource = BikbulatovGlazkiSave2Entities.GetContext().Agent.ToList();
+                UpdateAgents();
+            }
+        }
+
         private void Filter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // фильтрация по приоритету 
@@ -253,6 +263,12 @@ namespace GlazkiSave
         private void AddAgent_Click(object sender, RoutedEventArgs e)
         {
            Manager.MainFrame.Navigate(new AddEditPage(null));
+        }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AddEditPage((sender as Button).DataContext as Agent));
+            UpdateAgents();
         }
     }
 }

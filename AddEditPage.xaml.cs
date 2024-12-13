@@ -109,9 +109,35 @@ namespace GlazkiSave
             }
         }
 
+
+
+
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
 
+            var currentClientService = BikbulatovGlazkiSave2Entities.GetContext().ProductSale.ToList();
+            currentClientService = currentClientService.Where(p => p.AgentID == _currentAgent.ID).ToList();
+
+            if (currentClientService.Count != 0)
+                MessageBox.Show("Невозможно удалить");
+            else
+            {
+                if (MessageBox.Show("Вы точно хотите выполнить удаление?", "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        BikbulatovGlazkiSave2Entities.GetContext().Agent.Remove(_currentAgent);
+                        BikbulatovGlazkiSave2Entities.GetContext().SaveChanges();
+                        Manager.MainFrame.GoBack();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message.ToString());
+                    }
+
+                }
+            }
         }
     }
 }
