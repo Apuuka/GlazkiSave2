@@ -65,11 +65,11 @@ namespace GlazkiSave
             }
             if (ComboType.SelectedIndex == 5)
             {
-                currentAgents = currentAgents.OrderBy(p => p.Title).ToList();
+                currentAgents = currentAgents.OrderBy(p => p.discription).ToList();
             }
             if (ComboType.SelectedIndex == 6)
             {
-                currentAgents = currentAgents.OrderBy(p => p.Title).ToList();
+                currentAgents = currentAgents.OrderByDescending(p => p.discription).ToList();
             }
 
             if (Filter.SelectedIndex == 0)
@@ -119,6 +119,8 @@ namespace GlazkiSave
             AgentListView.ItemsSource = currentAgents.ToList();
         }
 
+
+
         private void RButtonUp_Checked(object sender, RoutedEventArgs e)
         {
 
@@ -128,16 +130,14 @@ namespace GlazkiSave
         {
 
         }
-
-        private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
+        private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            // серч
-            UpdateAgents();
+            Manager.MainFrame.Navigate(new AddEditPage(null));
         }
 
-        private void ComboType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            // сортировка (оао ооо)
+            Manager.MainFrame.Navigate(new AddEditPage((sender as Button).DataContext as Agent));
             UpdateAgents();
         }
 
@@ -149,6 +149,17 @@ namespace GlazkiSave
                 AgentListView.ItemsSource = BikbulatovGlazkiSave2Entities.GetContext().Agent.ToList();
                 UpdateAgents();
             }
+        }
+        private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            // серч
+            UpdateAgents();
+        }
+
+        private void ComboType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // сортировка (оао ооо)
+            UpdateAgents();
         }
 
         private void Filter_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -234,8 +245,7 @@ namespace GlazkiSave
                 }
                 PageListBox.SelectedIndex = CurrentPage;
 
-                min = CurrentPage * 10 + 10 < CountRecords ? CurrentPage * 10 + 10
-                    : CountRecords;
+                min = CurrentPage * 10 + 10 < CountRecords ? CurrentPage * 10 + 10 : CountRecords;
                 TBCount.Text = min.ToString();
                 TBAllRecords.Text = $" из {CountRecords.ToString()}";
 
@@ -259,16 +269,45 @@ namespace GlazkiSave
         {
             ChangePage(2, null);
         }
-
-        private void AddAgent_Click(object sender, RoutedEventArgs e)
+        private void AgentListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           Manager.MainFrame.Navigate(new AddEditPage(null));
+            if (AgentListView.SelectedItems.Count > 1)
+                ChangePriority.Visibility = Visibility.Visible;
+            else
+                ChangePriority.Visibility = Visibility.Hidden;
         }
-
-        private void EditButton_Click(object sender, RoutedEventArgs e)
+        private void ChangePriority_Click(object sender, RoutedEventArgs e)
         {
-            Manager.MainFrame.Navigate(new AddEditPage((sender as Button).DataContext as Agent));
-            UpdateAgents();
+            int maxPriority = 0;
+            foreach (Agent agent in AgentListView.SelectedItems)
+            {
+                if (agent.Priority > maxPriority)
+                    maxPriority = agent.Priority;
+            }
+            SetWindow myWindow = new SetWindow(maxPriority); myWindow.ShowDialog();
+            if (string.IsNullOrEmpty(myWindow.TBPriority.Text))
+            {
+                MessageBox.Show("Изменения не произошло");
+            }
+            else
+            {
+                int newPriority = Convert.ToInt32(myWindow.TBPriority.Text);
+                foreach (Agent agent in AgentListView.SelectedItems)
+                {
+                    agent.Priority = newPriority;
+                }
+            }
+
+            try
+            {
+                BikbulatovGlazkiSave2Entities.GetContext().SaveChanges();
+                MessageBox.Show("информация сохранена");
+                UpdateAgents();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
     }
 }
