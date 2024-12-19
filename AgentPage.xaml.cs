@@ -32,7 +32,7 @@ namespace GlazkiSave
         public AgentPage()
         {
             InitializeComponent();
-            var currentAgents = BikbulatovGlazkiSave2Entities.GetContext().Agent.ToList();
+            var currentAgents = Bikbulatov_GlazkiEntities.GetContext().Agent.ToList();
             AgentListView.ItemsSource = currentAgents;
             ComboType.SelectedIndex = 0;
             Filter.SelectedIndex = 0;
@@ -42,7 +42,7 @@ namespace GlazkiSave
 
         private void UpdateAgents()
         {
-            var currentAgents = BikbulatovGlazkiSave2Entities.GetContext().Agent.ToList();
+            var currentAgents = Bikbulatov_GlazkiEntities.GetContext().Agent.ToList();
 
             if (ComboType.SelectedIndex == 0)
             {
@@ -145,8 +145,8 @@ namespace GlazkiSave
         {
             if (Visibility == Visibility.Visible)
             {
-                BikbulatovGlazkiSave2Entities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
-                AgentListView.ItemsSource = BikbulatovGlazkiSave2Entities.GetContext().Agent.ToList();
+                Bikbulatov_GlazkiEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                AgentListView.ItemsSource = Bikbulatov_GlazkiEntities.GetContext().Agent.ToList();
                 UpdateAgents();
             }
         }
@@ -300,7 +300,7 @@ namespace GlazkiSave
 
             try
             {
-                BikbulatovGlazkiSave2Entities.GetContext().SaveChanges();
+                Bikbulatov_GlazkiEntities.GetContext().SaveChanges();
                 MessageBox.Show("информация сохранена");
                 UpdateAgents();
             }

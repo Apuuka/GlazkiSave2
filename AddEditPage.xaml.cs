@@ -95,11 +95,11 @@ namespace GlazkiSave
             _currentAgent.AgentTypeID = ComboType.SelectedIndex;
             //добавить в контекст текущие значения новой услуги
             if (_currentAgent.ID == 0)
-                BikbulatovGlazkiSave2Entities.GetContext().Agent.Add(_currentAgent);
+                Bikbulatov_GlazkiEntities.GetContext().Agent.Add(_currentAgent);
             //сохранить изменения, если никаких ошибок не получилось при этом
             try
             {
-                BikbulatovGlazkiSave2Entities.GetContext().SaveChanges();
+                Bikbulatov_GlazkiEntities.GetContext().SaveChanges();
                 MessageBox.Show("информация сохранена");
                 Manager.MainFrame.GoBack();
             }
@@ -115,7 +115,7 @@ namespace GlazkiSave
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
 
-            var currentClientService = BikbulatovGlazkiSave2Entities.GetContext().ProductSale.ToList();
+            var currentClientService = Bikbulatov_GlazkiEntities.GetContext().ProductSale.ToList();
             currentClientService = currentClientService.Where(p => p.AgentID == _currentAgent.ID).ToList();
 
             if (currentClientService.Count != 0)
@@ -126,8 +126,8 @@ namespace GlazkiSave
                 {
                     try
                     {
-                        BikbulatovGlazkiSave2Entities.GetContext().Agent.Remove(_currentAgent);
-                        BikbulatovGlazkiSave2Entities.GetContext().SaveChanges();
+                        Bikbulatov_GlazkiEntities.GetContext().Agent.Remove(_currentAgent);
+                        Bikbulatov_GlazkiEntities.GetContext().SaveChanges();
                         Manager.MainFrame.GoBack();
 
                     }
@@ -138,6 +138,11 @@ namespace GlazkiSave
 
                 }
             }
+        }
+        private void RealizeHistoryBtn_Click(object sender, RoutedEventArgs e)
+        {
+            HistorySales window = new HistorySales(_currentAgent);
+            window.ShowDialog();
         }
     }
 }

@@ -67,75 +67,86 @@
     <Compile Include="AddEditPage.xaml.cs">
       <DependentUpon>AddEditPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddProductPage.xaml.cs">
+      <DependentUpon>AddProductPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Agent.cs">
-      <DependentUpon>GlazkiModel.tt</DependentUpon>
+      <DependentUpon>GlazkiSave.tt</DependentUpon>
     </Compile>
     <Compile Include="AgentPage.xaml.cs">
       <DependentUpon>AgentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="AgentPriorityHistory.cs">
-      <DependentUpon>GlazkiModel.tt</DependentUpon>
+      <DependentUpon>GlazkiSave.tt</DependentUpon>
     </Compile>
     <Compile Include="AgentType.cs">
-      <DependentUpon>GlazkiModel.tt</DependentUpon>
+      <DependentUpon>GlazkiSave.tt</DependentUpon>
     </Compile>
-    <Compile Include="GlazkiModel.Context.cs">
+    <Compile Include="GlazkiSave.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GlazkiModel.Context.tt</DependentUpon>
+      <DependentUpon>GlazkiSave.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="GlazkiModel.cs">
+    <Compile Include="GlazkiSave.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GlazkiModel.tt</DependentUpon>
+      <DependentUpon>GlazkiSave.tt</DependentUpon>
     </Compile>
-    <Compile Include="GlazkiModel.Designer.cs">
+    <Compile Include="GlazkiSave.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GlazkiModel.edmx</DependentUpon>
+      <DependentUpon>GlazkiSave.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="HistorySales.xaml.cs">
+      <DependentUpon>HistorySales.xaml</DependentUpon>
     </Compile>
     <Compile Include="Material.cs">
-      <DependentUpon>GlazkiModel.tt</DependentUpon>
+      <DependentUpon>GlazkiSave.tt</DependentUpon>
     </Compile>
     <Compile Include="MaterialCountHistory.cs">
-      <DependentUpon>GlazkiModel.tt</DependentUpon>
+      <DependentUpon>GlazkiSave.tt</DependentUpon>
     </Compile>
     <Compile Include="MaterialType.cs">
-      <DependentUpon>GlazkiModel.tt</DependentUpon>
+      <DependentUpon>GlazkiSave.tt</DependentUpon>
     </Compile>
     <Compile Include="Product.cs">
-      <DependentUpon>GlazkiModel.tt</DependentUpon>
+      <DependentUpon>GlazkiSave.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductCostHistory.cs">
-      <DependentUpon>GlazkiModel.tt</DependentUpon>
+      <DependentUpon>GlazkiSave.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductMaterial.cs">
-      <DependentUpon>GlazkiModel.tt</DependentUpon>
+      <DependentUpon>GlazkiSave.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductSale.cs">
-      <DependentUpon>GlazkiModel.tt</DependentUpon>
+      <DependentUpon>GlazkiSave.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductType.cs">
-      <DependentUpon>GlazkiModel.tt</DependentUpon>
+      <DependentUpon>GlazkiSave.tt</DependentUpon>
     </Compile>
     <Compile Include="res\Manager.cs" />
     <Compile Include="SetWindow.xaml.cs">
       <DependentUpon>SetWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Shop.cs">
-      <DependentUpon>GlazkiModel.tt</DependentUpon>
+      <DependentUpon>GlazkiSave.tt</DependentUpon>
     </Compile>
     <Compile Include="Supplier.cs">
-      <DependentUpon>GlazkiModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>GlazkiModel.tt</DependentUpon>
+      <DependentUpon>GlazkiSave.tt</DependentUpon>
     </Compile>
     <Page Include="AddEditPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddProductPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AgentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HistorySales.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -174,12 +185,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="GlazkiModel.edmx">
+    <EntityDeploy Include="GlazkiSave.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>GlazkiModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>GlazkiSave.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="GlazkiModel.edmx.diagram">
-      <DependentUpon>GlazkiModel.edmx</DependentUpon>
+    <None Include="GlazkiSave.edmx.diagram">
+      <DependentUpon>GlazkiSave.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -334,15 +345,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="GlazkiModel.Context.tt">
+    <Content Include="GlazkiSave.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>GlazkiModel.edmx</DependentUpon>
-      <LastGenOutput>GlazkiModel.Context.cs</LastGenOutput>
+      <DependentUpon>GlazkiSave.edmx</DependentUpon>
+      <LastGenOutput>GlazkiSave.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="GlazkiModel.tt">
+    <Content Include="GlazkiSave.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>GlazkiModel.edmx</DependentUpon>
-      <LastGenOutput>GlazkiModel.cs</LastGenOutput>
+      <DependentUpon>GlazkiSave.edmx</DependentUpon>
+      <LastGenOutput>GlazkiSave.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

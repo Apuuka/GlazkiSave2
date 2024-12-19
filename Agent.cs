@@ -11,16 +11,17 @@ namespace GlazkiSave
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Windows.Media;
+
     public partial class Agent
     {
-
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-
-       
-
-
+        public Agent()
+        {
+            this.AgentPriorityHistory = new HashSet<AgentPriorityHistory>();
+            this.ProductSale = new HashSet<ProductSale>();
+        }
+    
         public int ID { get; set; }
         public Nullable<int> AgentTypeID { get; set; }
         public string Title { get; set; }
@@ -33,8 +34,6 @@ namespace GlazkiSave
         public string INN { get; set; }
         public string KPP { get; set; }
 
-        
-
         public string GetAgentType
         {
             get
@@ -42,14 +41,20 @@ namespace GlazkiSave
                 return AgentType.Title;
             }
         }
-
-        
-        public Agent()
+        public SolidColorBrush FonStyle
         {
-            this.AgentPriorityHistory = new HashSet<AgentPriorityHistory>();
-            this.ProductSale = new HashSet<ProductSale>();
+            get
+            {
+                if (discription >= 25)
+                {
+                    return (SolidColorBrush)new BrushConverter().ConvertFromString("LightGreen");
+                }
+                else
+                {
+                    return null;
+                }
+            }
         }
-
         public decimal Prod
         {
             get
@@ -80,12 +85,10 @@ namespace GlazkiSave
 
             }
         }
-
         public virtual AgentType AgentType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AgentPriorityHistory> AgentPriorityHistory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductSale> ProductSale { get; set; }
-
     }
 }
